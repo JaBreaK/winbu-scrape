@@ -262,7 +262,7 @@ GET /api/episode/one-piece-episode-1
 
 ### GET /api/server/:id
 
-Mengambil URL embed video dari server streaming.
+Mengambil konten HTML video player dari server streaming.
 
 **Parameter:**
 - `id` (string): Post ID dari `data_post` pada `stream_options`
@@ -271,20 +271,19 @@ Mengambil URL embed video dari server streaming.
 
 **Example Request:**
 ```
-GET /api/server/12345?nume=1&type=schtml
+GET /api/server/65908?nume=1&type=urliframe
 ```
 
 **Response:**
-```json
-{
-  "status": "success",
-  "data": {
-    "embed_url": "https://player.example.com/embed/..."
-  }
-}
+```html
+<video controls="" class="playervideo">
+  <source src="https://trashbytes.net/dl/jrWvIlA00XupicMZg8efUeZut9LsxD-dochD9s2m_03c2-5Az5jy-DRPziubt5jbwlBWZTO3wDvKpjVF_i2Xbmy5oLV_e11FuBuNLKCurPL6ev6jhNZ762EggOXhRhemnz_T?v=1764155103-ytt6SeFCNQLr%2FqWT14QNAbkMCpnDoGeMF7Xnx%2Fiyjgs%3D" type="video/mp4">
+</video>
 ```
 
-> **Note:** Endpoint ini melakukan POST request ke `https://winbu.tv/wp-admin/admin-ajax.php` untuk mengambil embed URL asli.
+**Response Type:** `text/html`
+
+> **Note:** Endpoint ini melakukan POST request ke `https://winbu.tv/wp-admin/admin-ajax.php` dan mengembalikan konten HTML yang berisi video player. Anda dapat parse HTML ini untuk mengekstrak URL video dari tag `<source>`.
 
 ---
 
